@@ -1,9 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Main from './components/Main';
+
+
 function App() {
   return (
-    <div className="App">
-     <h1>sdfds</h1>
+    <div className="grid-container">
+      <header/>
+      <main>
+      <Main />
+      </main>
+      <footer/>
     </div>
   );
 }
