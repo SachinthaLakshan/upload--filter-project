@@ -45,6 +45,7 @@ main{
   margin-bottom: 20px;
   box-shadow: 0px 3px 10px #A5A5A5;
   background-color: #fff;
+  padding-bottom: 20px;
 }
 .main-container{
   display:flex;
@@ -122,7 +123,7 @@ main{
 }
 .bottom-btn-wraper{
 justify-content: center;
-padding-bottom: 30px;
+padding-bottom: 0;
 }
 
 .plus-icon-wrapper{
@@ -159,9 +160,7 @@ padding-bottom: 30px;
   width: 750px;
 }
 .copyright-wrapper{
-  text-align: left;
-  margin-left: 20px;
-  margin-bottom: 30px;
+  margin-top: 40px;
 }
 .copyright-wrapper input{
   border: none;
@@ -190,6 +189,7 @@ padding-bottom: 30px;
 }
 .copyright-preview {
   margin-left: 25px;
+  margin-top: 50px;
 }
 .copyright-previe h2{
   margin: 0;
@@ -198,4 +198,8 @@ padding: 0;
 .copyright-previe p{
   margin: 0;
 padding: 0;
+}
+.add-component{
+  left: 20px;
+  right: 50px;
 }

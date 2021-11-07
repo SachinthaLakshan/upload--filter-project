@@ -58,7 +58,7 @@ const Section = (props) => {
             {props.scectionObj.component && props.scectionObj.component.map((obj) => {
                 return (<div className="copyright-preview" key={obj.id}>
                     {addButtonKey===obj.id && buttonrowVisible?buttonRow:<></>}
-                    {addButtonKey===obj.id &&componentType === "copyright"&& !buttonrowVisible ? <div className="section-initial-text" >
+                    {addButtonKey===obj.id &&componentType === "copyright"&& !buttonrowVisible ? <div className="add-component" >
                 <Component type="copyright" sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} componentId={obj.id} />
             </div> : <></>
             }
