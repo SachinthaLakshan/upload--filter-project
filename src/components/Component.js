@@ -24,7 +24,7 @@ const Component = (props) => {
             }
             else if (type === "headlinetext") {
                 setToggleHeadlineText(false);
-                props.componentSaveHandler(componentObj,props.sectionId);
+                props.componentSaveHandler(componentObj,props.sectionId,props.componentId);
             }
         }
 

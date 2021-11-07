@@ -7,6 +7,7 @@ const Section = (props) => {
     const [headerIsEditable, setHeaderIsEditable] = useState(false);
     const [addButtonKey, setaddButtonKey] = useState(0);
     const [componentType, setComponentType] = useState("");
+    const [buttonrowVisible, setButtonrowVisible] = useState(true);
 
 
     const clickHandler = () => {
@@ -22,6 +23,7 @@ const Section = (props) => {
     const rowBtnClickHandler = (type) => {
 
         setComponentType(type);
+        setButtonrowVisible(false);
 
     }
     const buttonRow = (<>
@@ -55,7 +57,11 @@ const Section = (props) => {
 
             {props.scectionObj.component && props.scectionObj.component.map((obj) => {
                 return (<div className="copyright-preview" key={obj.id}>
-                    {addButtonKey===obj.id?buttonRow:<></>}
+                    {addButtonKey===obj.id && buttonrowVisible?buttonRow:<></>}
+                    {addButtonKey===obj.id &&componentType === "copyright"&& !buttonrowVisible ? <div className="section-initial-text" >
+                <Component type="copyright" sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} componentId={obj.id} />
+            </div> : <></>
+            }
                     <div className="plus-icon-wrapper" onClick={()=>sidePlusButton(obj.id)}>
                         <i className="fa fa-plus" aria-hidden="true" ></i>
                     </div>

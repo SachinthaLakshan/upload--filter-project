@@ -40,13 +40,13 @@ const Main = () => {
         setSection(arr);
         localStorage.setItem("section", JSON.stringify(arr));
     }
-    const addComponentHandler = (componentObj,sectionId) => {
-        console.log(componentObj);
-        var index = section.map(function (x) { return x.id; }).indexOf(sectionId);
+    const addComponentHandler = (componentObj,sectionId,componentId) => {
+        var index_section = section.map(function (x) { return x.id; }).indexOf(sectionId);
+        var index_component = section[index_section].component.map(function (x) { return x.id; }).indexOf(componentId);
         const newsection = [...section];
-        newsection[index] = {
-            ...newsection[index],
-            component: [...newsection[index].component,componentObj]
+        newsection[index_section] = {
+            ...newsection[index_section],
+            component: [...newsection[index_section].component,componentObj]
           };
           localStorage.setItem("section", JSON.stringify(newsection));
           setSection(newsection);
