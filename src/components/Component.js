@@ -14,7 +14,7 @@ const Component = (props) => {
         return (val);
     }
 
-    var componentObj = { id: idGenarator(), type: props.type, headerText: headline, headerBody: headlineText }
+    var componentObj = { id: idGenarator(), type: props.type, headerText: headline, headerBody: headlineText,editable:false }
 
     const handleKeyDown = (event) => {
 
@@ -24,6 +24,7 @@ const Component = (props) => {
             }
             else if (type === "headlinetext") {
                 setToggleHeadlineText(false);
+                props.componentSaveHandler(componentObj);
             }
         }
 

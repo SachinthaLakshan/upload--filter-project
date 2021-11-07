@@ -6,6 +6,7 @@ const Section = (props) => {
 
     const [headerIsEditable, setHeaderIsEditable] = useState(false);
     const [rowButtontype, setRowButtontype] = useState("");
+    const [componentType, setComponentType] = useState("");
 console.log(">>>",props.scectionObj.component);
 
 
@@ -20,9 +21,9 @@ console.log(">>>",props.scectionObj.component);
         return (val);
     }
     const rowBtnClickHandler = (type) => {
-        if(type==="copyright"){
-        props.componentSaveHandler({id:idGenarator(),type:type,headerText: "",headerBody: ""},props.scectionObj.id);
-        }
+        
+            setComponentType(type);
+        
     }
     const buttonRow = (<>
         <div className="section-initial-text">
@@ -39,7 +40,7 @@ console.log(">>>",props.scectionObj.component);
             </div>
             </>
     );
-
+   
     return (
         <div className="card-container">
             <div className="section-header">
@@ -47,9 +48,16 @@ console.log(">>>",props.scectionObj.component);
                     <input placeholder="Add Header.." />}
                 <i className="fa fa-times-circle-o" onClick={sectionCloseBtnHandler} />
             </div>
+            {componentType==="copyright"?<div className="section-initial-text" >
+                    <Component type="copyright" sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler}   />
+                </div>:<></>
+            }
             {props.scectionObj.component && props.scectionObj.component.map((obj) => {
                 return (<div className="section-initial-text" key={obj.id}>
-                    <Component type="copyright" sectionId={props.scectionObj.id}  />
+                   
+                    <h2>{obj.headerText}</h2>
+                    <br/>
+                    <p>{obj.headerBody}</p>
                 </div>)
             })}
             {buttonRow}
