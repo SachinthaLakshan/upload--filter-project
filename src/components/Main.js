@@ -7,7 +7,7 @@ const Main = () => {
     const InitialState = {
         id: 123,
         sectionName: "SECTION NAME",
-        component: []
+        component: [{}]
     }
     //localStorage.clear();
     const [section, setSection] = useState([InitialState]);
@@ -40,6 +40,15 @@ const Main = () => {
         setSection(arr);
         localStorage.setItem("section", JSON.stringify(arr));
     }
+    function addAfter(array, index, newItem) {
+        return [
+            ...array.slice(0, index),
+            newItem,
+            ...array.slice(index)
+        ];
+    }
+
+
     const addComponentHandler = (componentObj,sectionId,componentId) => {
         var index_section = section.map(function (x) { return x.id; }).indexOf(sectionId);
         var index_component = section[index_section].component.map(function (x) { return x.id; }).indexOf(componentId);
@@ -48,6 +57,8 @@ const Main = () => {
             ...newsection[index_section],
             component: [...newsection[index_section].component,componentObj]
           };
+          const newSection2=[...section];
+          newSection2[index_section].component[index_component]=
           localStorage.setItem("section", JSON.stringify(newsection));
           setSection(newsection);
           
