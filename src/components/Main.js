@@ -125,12 +125,6 @@ const Main = () => {
                     <input type="checkbox" />
                     <label>Description</label>
                 </div>
-                {section[0].component.map((obj) => {
-                return(<div key={obj.id} className="row-1">
-                    <input type="checkbox" />
-                    <label>{obj.id}</label>
-                </div>
-                )})}
             </div>
         </div>
     );
