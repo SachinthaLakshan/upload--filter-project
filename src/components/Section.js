@@ -7,7 +7,6 @@ const Section = (props) => {
     const [headerIsEditable, setHeaderIsEditable] = useState(false);
     const [rowButtontype, setRowButtontype] = useState("");
     const [componentType, setComponentType] = useState("");
-console.log(">>>",props.scectionObj.component);
 
 
     const clickHandler = () => {
@@ -21,26 +20,26 @@ console.log(">>>",props.scectionObj.component);
         return (val);
     }
     const rowBtnClickHandler = (type) => {
-        
-            setComponentType(type);
-        
+
+        setComponentType(type);
+
     }
     const buttonRow = (<>
         <div className="section-initial-text">
             <hr />
-            
+
             <p>Select the component that you want to add</p>
-            </div>
-            <div className="row-1 bottom-btn-wraper">
-                <button className="row-buttons" onClick={() => rowBtnClickHandler("copyright")}>CopyRight</button>
-                <button className="row-buttons" onClick={() => rowBtnClickHandler("description")}>Description</button>
-                <button className="row-buttons" onClick={() => rowBtnClickHandler("file")}>File</button>
-                <button className="row-buttons" onClick={() => rowBtnClickHandler("link")}>Link</button>
-                <button className="row-buttons" onClick={() => rowBtnClickHandler("line")}>Line</button>
-            </div>
-            </>
+        </div>
+        <div className="row-1 bottom-btn-wraper">
+            <button className="row-buttons" onClick={() => rowBtnClickHandler("copyright")}>CopyRight</button>
+            <button className="row-buttons" onClick={() => rowBtnClickHandler("description")}>Description</button>
+            <button className="row-buttons" onClick={() => rowBtnClickHandler("file")}>File</button>
+            <button className="row-buttons" onClick={() => rowBtnClickHandler("link")}>Link</button>
+            <button className="row-buttons" onClick={() => rowBtnClickHandler("line")}>Line</button>
+        </div>
+    </>
     );
-   
+
     return (
         <div className="card-container">
             <div className="section-header">
@@ -48,15 +47,13 @@ console.log(">>>",props.scectionObj.component);
                     <input placeholder="Add Header.." />}
                 <i className="fa fa-times-circle-o" onClick={sectionCloseBtnHandler} />
             </div>
-            {componentType==="copyright"?<div className="section-initial-text" >
-                    <Component type="copyright" sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler}   />
-                </div>:<></>
+            {componentType === "copyright" ? <div className="section-initial-text" >
+                <Component type="copyright" sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} />
+            </div> : <></>
             }
             {props.scectionObj.component && props.scectionObj.component.map((obj) => {
-                return (<div className="section-initial-text" key={obj.id}>
-                   
+                return (<div className="copyright-preview" key={obj.id}>
                     <h2>{obj.headerText}</h2>
-                    <br/>
                     <p>{obj.headerBody}</p>
                 </div>)
             })}

@@ -24,14 +24,13 @@ const Component = (props) => {
             }
             else if (type === "headlinetext") {
                 setToggleHeadlineText(false);
-                props.componentSaveHandler(componentObj);
+                props.componentSaveHandler(componentObj,props.sectionId);
             }
         }
 
     }
     const focusedType = (type) => {
         setType(type);
-        console.log(type);
     }
 
     const Component = () => {
@@ -57,7 +56,7 @@ const Component = (props) => {
             <div className="plus-icon-wrapper" >
                 <i className="fa fa-plus" aria-hidden="true"></i>
             </div>
-            {Component()}
+            {toggleHeadlineText?Component():<></>}
         </div>
     );
 };

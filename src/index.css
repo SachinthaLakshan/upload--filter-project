@@ -188,3 +188,14 @@ padding-bottom: 30px;
 .component-container{
   margin-top: -40px;
 }
+.copyright-preview {
+  margin-left: 25px;
+}
+.copyright-previe h2{
+  margin: 0;
+padding: 0;
+}
+.copyright-previe p{
+  margin: 0;
+padding: 0;
+}

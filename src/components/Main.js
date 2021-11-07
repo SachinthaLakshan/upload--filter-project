@@ -8,18 +8,6 @@ const Main = () => {
         id: 123,
         sectionName: "SECTION NAME",
         component: []
-        //     {
-        //         id: 0,
-        //         type: "",
-        //         headerText: "",
-        //         headerBody: "",
-        //         link: "",
-        //         imageUrl: "",
-        //         imageSize: "",
-        //         imageName: ""
-
-        //     }
-        // ]
     }
     //localStorage.clear();
     const [section, setSection] = useState([InitialState]);
@@ -53,6 +41,7 @@ const Main = () => {
         localStorage.setItem("section", JSON.stringify(arr));
     }
     const addComponentHandler = (componentObj,sectionId) => {
+        console.log(componentObj);
         var index = section.map(function (x) { return x.id; }).indexOf(sectionId);
         const newsection = [...section];
         newsection[index] = {
@@ -61,7 +50,8 @@ const Main = () => {
           };
           localStorage.setItem("section", JSON.stringify(newsection));
           setSection(newsection);
-          console.log(section[0].component);
+          
+          
 
 
         
