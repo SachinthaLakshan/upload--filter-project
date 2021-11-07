@@ -46,7 +46,7 @@ const Main = () => {
         const newsection = [...section];
         newsection[index] = {
             ...newsection[index],
-            component: [componentObj]
+            component: [...newsection[index].component,componentObj]
           };
           localStorage.setItem("section", JSON.stringify(newsection));
           setSection(newsection);
