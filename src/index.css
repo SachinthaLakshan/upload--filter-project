@@ -127,7 +127,7 @@ padding-bottom: 30px;
 
 .plus-icon-wrapper{
   border-radius: 50%;
-  border:1px gray solid;
+  border:1px rgb(151, 150, 150) solid;
   position: relative;
   display: inline-block;
   width: 25px;
@@ -135,10 +135,11 @@ padding-bottom: 30px;
   margin-bottom: 20px;
   text-align: center;
   margin-left: 380px;
+  background-color: #e4e3e3;
 }
 .plus-icon-wrapper i{
   font-size: 15px;
-  color: rgb(100, 95, 95);
+  color:rgb(148, 148, 148);
   padding-top: 3px;
   
 }
@@ -152,4 +153,38 @@ padding-bottom: 30px;
   text-align: center;
   color: #949191;
   padding-bottom: 20px;
+}
+.section-initial-text hr{
+  border: 1px dashed #bbb;
+  width: 750px;
+}
+.copyright-wrapper{
+  text-align: left;
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+.copyright-wrapper input{
+  border: none;
+  width: 120px;
+}
+.copyright-wrapper .headline{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.component-container .plus-icon-wrapper{
+  left: 209px;
+  top:17px;
+  background-color: #e4e3e3;
+}
+.component-container .plus-icon-wrapper i{
+  font-weight: 100;
+  margin-top: 2px;
+  color:rgb(148, 148, 148);
+}
+.copyright-btn-element-wrapper{
+  margin: 0;
+}
+.component-container{
+  margin-top: -40px;
 }

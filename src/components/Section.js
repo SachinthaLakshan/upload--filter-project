@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import Component from './Component';
 
 
 const Section = (props) => {
 
     const [headerIsEditable, setHeaderIsEditable] = useState(false);
+    const [rowButtontype, setRowButtontype] = useState("");
+console.log(">>>",props.scectionObj.component);
 
 
     const clickHandler = () => {
@@ -12,19 +15,29 @@ const Section = (props) => {
     const sectionCloseBtnHandler = () => {
         props.closeBtnHandler(props.scectionObj.id);
     }
-    const copyRightBtnClickHandler = () => {
-        return (
-            <div className="copyright-btn-element-wrapper">
-                <h2>My Headline</h2>
-                <p>This is my copy text</p>
-            </div>
-        )
+    const idGenarator = () => {
+        var val = Math.floor(1000 + Math.random() * 9000);
+        return (val);
     }
-    const abc = (
-        <div className="copyright-btn-element-wrapper">
-            <h2>My Headline</h2>
-            <p>This is my copy text</p>
-        </div>
+    const rowBtnClickHandler = (type) => {
+        if(type==="copyright"){
+        props.componentSaveHandler({id:idGenarator(),type:type,headerText: "",headerBody: ""},props.scectionObj.id);
+        }
+    }
+    const buttonRow = (<>
+        <div className="section-initial-text">
+            <hr />
+            
+            <p>Select the component that you want to add</p>
+            </div>
+            <div className="row-1 bottom-btn-wraper">
+                <button className="row-buttons" onClick={() => rowBtnClickHandler("copyright")}>CopyRight</button>
+                <button className="row-buttons" onClick={() => rowBtnClickHandler("description")}>Description</button>
+                <button className="row-buttons" onClick={() => rowBtnClickHandler("file")}>File</button>
+                <button className="row-buttons" onClick={() => rowBtnClickHandler("link")}>Link</button>
+                <button className="row-buttons" onClick={() => rowBtnClickHandler("line")}>Line</button>
+            </div>
+            </>
     );
 
     return (
@@ -34,16 +47,12 @@ const Section = (props) => {
                     <input placeholder="Add Header.." />}
                 <i className="fa fa-times-circle-o" onClick={sectionCloseBtnHandler} />
             </div>
-            <div className="section-initial-text">
-                <p>Select the component that you want to add</p>
-            </div>
-            <div className="row-1 bottom-btn-wraper">
-                <button className="row-buttons" onClick={() => copyRightBtnClickHandler()}>CopyRight</button>
-                <button className="row-buttons">Description</button>
-                <button className="row-buttons">File</button>
-                <button className="row-buttons">Link</button>
-                <button className="row-buttons">Line</button>
-            </div>
+            {props.scectionObj.component && props.scectionObj.component.map((obj) => {
+                return (<div className="section-initial-text" key={obj.id}>
+                    <Component type="copyright" sectionId={props.scectionObj.id}  />
+                </div>)
+            })}
+            {buttonRow}
         </div>
     );
 };
