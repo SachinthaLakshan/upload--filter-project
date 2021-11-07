@@ -172,12 +172,12 @@ padding-bottom: 30px;
   font-weight: 600;
 }
 
-.component-container .plus-icon-wrapper{
-  left: 209px;
+.copyright-preview .plus-icon-wrapper{
+  left: 381px;
   top:17px;
   background-color: #e4e3e3;
 }
-.component-container .plus-icon-wrapper i{
+.copyright-preview .plus-icon-wrapper i{
   font-weight: 100;
   margin-top: 2px;
   color:rgb(148, 148, 148);

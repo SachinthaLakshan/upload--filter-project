@@ -47,16 +47,20 @@ const Section = (props) => {
                     <input placeholder="Add Header.." />}
                 <i className="fa fa-times-circle-o" onClick={sectionCloseBtnHandler} />
             </div>
-            {componentType === "copyright" ? <div className="section-initial-text" >
-                <Component type="copyright" sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} />
-            </div> : <></>
-            }
+           
             {props.scectionObj.component && props.scectionObj.component.map((obj) => {
                 return (<div className="copyright-preview" key={obj.id}>
+                     <div className="plus-icon-wrapper" >
+                <i className="fa fa-plus" aria-hidden="true"></i>
+            </div>
                     <h2>{obj.headerText}</h2>
                     <p>{obj.headerBody}</p>
                 </div>)
             })}
+             {componentType === "copyright" ? <div className="section-initial-text" >
+                <Component type="copyright" sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} />
+            </div> : <></>
+            }
             {buttonRow}
         </div>
     );

@@ -53,9 +53,7 @@ const Component = (props) => {
 
     return (
         <div className="component-container">
-            <div className="plus-icon-wrapper" >
-                <i className="fa fa-plus" aria-hidden="true"></i>
-            </div>
+           
             {toggleHeadlineText?Component():<></>}
         </div>
     );
