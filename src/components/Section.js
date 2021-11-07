@@ -5,7 +5,7 @@ import Component from './Component';
 const Section = (props) => {
 
     const [headerIsEditable, setHeaderIsEditable] = useState(false);
-    const [rowButtontype, setRowButtontype] = useState("");
+    const [addButtonKey, setaddButtonKey] = useState(0);
     const [componentType, setComponentType] = useState("");
 
 
@@ -40,6 +40,11 @@ const Section = (props) => {
     </>
     );
 
+    const sidePlusButton=(key)=>{
+        console.log(key)
+        setaddButtonKey(key);
+    }
+
     return (
         <div className="card-container">
             <div className="section-header">
@@ -47,17 +52,18 @@ const Section = (props) => {
                     <input placeholder="Add Header.." />}
                 <i className="fa fa-times-circle-o" onClick={sectionCloseBtnHandler} />
             </div>
-           
+
             {props.scectionObj.component && props.scectionObj.component.map((obj) => {
                 return (<div className="copyright-preview" key={obj.id}>
-                     <div className="plus-icon-wrapper" >
-                <i className="fa fa-plus" aria-hidden="true"></i>
-            </div>
+                    {addButtonKey===obj.id?buttonRow:<></>}
+                    <div className="plus-icon-wrapper" onClick={()=>sidePlusButton(obj.id)}>
+                        <i className="fa fa-plus" aria-hidden="true" ></i>
+                    </div>
                     <h2>{obj.headerText}</h2>
                     <p>{obj.headerBody}</p>
                 </div>)
             })}
-             {componentType === "copyright" ? <div className="section-initial-text" >
+            {componentType === "copyright" ? <div className="section-initial-text" >
                 <Component type="copyright" sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} />
             </div> : <></>
             }
