@@ -28,7 +28,7 @@ const Section = (props) => {
     }
     const buttonRow = (<>
         <div className="section-initial-text">
-            <hr />
+
 
             <p>Select the component that you want to add</p>
         </div>
@@ -42,7 +42,7 @@ const Section = (props) => {
     </>
     );
 
-    const sidePlusButton=(key)=>{
+    const sidePlusButton = (key) => {
         console.log(key)
         setaddButtonKey(key);
     }
@@ -57,22 +57,23 @@ const Section = (props) => {
 
             {props.scectionObj.component && props.scectionObj.component.map((obj) => {
                 return (<div className="copyright-preview" key={obj.id}>
-                    {addButtonKey===obj.id && buttonrowVisible?buttonRow:<></>}
-                    {addButtonKey===obj.id &&componentType === "copyright"&& !buttonrowVisible ? <div className="add-component" >
-                <Component type="copyright" sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} componentId={obj.id} />
-            </div> : <></>
-            }
-                    <div className="plus-icon-wrapper" onClick={()=>sidePlusButton(obj.id)}>
+                    {addButtonKey === obj.id && buttonrowVisible ? buttonRow : <></>}
+                    {addButtonKey === obj.id && !buttonrowVisible ? <div className="add-component" >
+                        <Component type={componentType} sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} componentId={obj.id} />
+                    </div> : <></>
+                    }
+                    <div className="plus-icon-wrapper" onClick={() => sidePlusButton(obj.id)}>
                         <i className="fa fa-plus" aria-hidden="true" ></i>
                     </div>
-                    <h2>{obj.headerText}</h2>
-                    <p>{obj.headerBody}</p>
+                    {obj.headerText&&<h2>{obj.headerText}</h2>}
+                    {obj.headerBody&&<p>{obj.headerBody}</p>}
+                    {obj.descriptionText&&<div className="description-preview"><p>{obj.descriptionText}</p></div>}
+                    {obj.type==="line"&&<div className="section-initial-text"><hr/></div>}
                 </div>)
             })}
-            {componentType === "copyright" ? <div className="section-initial-text" >
-                <Component type="copyright" sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} />
-            </div> : <></>
-            }
+           <div className="section-initial-text" >
+                <Component type={componentType} sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} />
+            </div> 
             {buttonRow}
         </div>
     );

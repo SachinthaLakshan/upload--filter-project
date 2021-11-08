@@ -11,7 +11,6 @@ const Main = () => {
     }
     //localStorage.clear();
     const [section, setSection] = useState([InitialState]);
-    const [count, setCount] = useState(0);
 
     useEffect(() => {
         let arr = localStorage.getItem("section");
