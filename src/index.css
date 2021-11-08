@@ -224,3 +224,73 @@ padding: 0;
   left: 20px;
   right: 50px;
 }
+.image-upload-container{
+ background-color: #d3d6d8;
+  width: 750px;
+  height: 150px;
+  text-align: left;
+  margin-top: 10px;
+}
+.image-upload-container img{
+  width: 150px;
+  height: 110px;
+  padding-top: 30px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+.trangle-flag{
+  width: 0; 
+  height: 0; 
+  border-bottom: 60px solid transparent;
+  border-right:60px solid transparent; 
+  position: absolute;
+  border-right:60px solid rgb(64, 64, 212);
+  margin-top: -80px;
+  left: 264px;
+}
+.trangle-flag i{
+  color: #fff;
+  position: absolute;
+  padding-top: 7px;
+  font-size:22px;
+  padding-left: 30px;
+}
+.image-name{
+  position: absolute;
+  margin-top: 40px;
+  background-color: transparent;
+  border: 0;
+  margin-left: 60px;
+  font-weight: bold;
+  font-size:x-large;
+
+}
+.image-button{
+  position: absolute;
+  margin-top: 80px;
+  background-color: transparent;
+  border: 0;
+  margin-left: 60px;
+  font-weight: bold;
+  font-size:x-large;
+  color: #706e6e;
+}
+.image-button:hover{
+color: black;
+}
+.image-name-preview{
+  position: absolute;
+  margin-bottom: 1000px;
+
+}
+.image-name-url{
+  position: absolute;
+  margin-top: 80px;
+  margin-left: 60px;
+  font-weight: bold;
+  font-size:15px;
+  border-radius: 5px;
+  width: 400px;
+
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Section from './Section';
-import produce from "immer"
+
 
 
 const Main = () => {
@@ -11,6 +11,10 @@ const Main = () => {
     }
     //localStorage.clear();
     const [section, setSection] = useState([InitialState]);
+    const [imagesChecked, setImagesChecked] = useState(false);
+    const [imagesLink, setImagesLink] = useState(false);
+    const [imagesCopy, setImagesCopy] = useState(false);
+    const [imagesDescription, setImagesDescription] = useState(false);
 
     useEffect(() => {
         let arr = localStorage.getItem("section");
@@ -49,57 +53,56 @@ const Main = () => {
         ];
     }
 
-   //console.log("FFF", addAfter([{id:1,name:"one"},{id:2,name:"two"},{id:3,name:"three"}], 1, {id:4,name:"four"}));
-
-
-    const addComponentHandler = (componentObj,sectionId,componentId) => {
+    const addComponentHandler = (componentObj, sectionId, componentId) => {
         var index_section = section.map(function (x) { return x.id; }).indexOf(sectionId);
         var index_component = section[index_section].component.map(function (x) { return x.id; }).indexOf(componentId);
         const newsection = [...section];
         newsection[index_section] = {
             ...newsection[index_section],
             component: [...addAfter(section[index_section].component, index_component, componentObj)]
-          };
-        //   const newSection2=[...section];
-        //   newSection2[index_section].component[index_component]=
-          localStorage.setItem("section", JSON.stringify(newsection));
-          setSection(newsection);
-
-    
-               
-          
-
-
-        
-    //      var index = section.map(function (x) { return x.id; }).indexOf(sectionId);
-    //      var tempcom=section[index].component.push({id:componentObj.id,type:componentObj.type,headerText:componentObj.headerText,headerBody:componentObj.headerBody});
-    //    console.log(">>",tempcom);
-         //  section[index]=tempcom;
-        //  setSection(section);
-         //console.log(">>",section);
-         // localStorage.setItem("section", JSON.stringify(section));
-        // window.location.reload()
-        // console.log(section);
-        // var tempList=section.filter(obj => obj.id === sectionId);
-        // tempList[0].component.concat({id:123,ahsd:"sasa"});
-       // var index = section.map(function (x) { return x.id; }).indexOf(sectionId);
-       //var tempComponentlist=section[index].component;
-    //    setSection( section.map((obj)=>{
-    //        if(obj.id===sectionId){
-    //            obj.component.concat({id:componentObj.id,type:componentObj.type,headerText:componentObj.headerText,headerBody:componentObj.headerBody});
-    //        }
-    //    }));
-        //var array=section[index].component.concat({id:componentObj.id,type:componentObj.type,headerText:componentObj.headerText,headerBody:componentObj.headerBody});
-        //section[index].component=array
-        //setSection(array1);
-        //console.log(section);
-        // section[index].component[count]={id:componentObj.id,type:componentObj.type,headerText:componentObj.headerText,headerBody:componentObj.headerBody};
-        // console.log("com::", section);
-        // setSection(section);
-        // setCount(count+1);
-         //setSection(nextState);
-        //  console.log(section);
+        };
+        localStorage.setItem("section", JSON.stringify(newsection));
+        setSection(newsection);
     }
+
+
+
+    const handleImagesChange = () => {
+        const newsection = [...section];
+        newsection[0] = {
+            ...newsection[0],
+            component: [...section[0].component.filter((data) => data.type === "file")]
+        };
+        setSection(newsection);
+        setImagesChecked(true);
+    };
+    const handleLinkChange = () => {
+        const newsection = [...section];
+        newsection[0] = {
+            ...newsection[0],
+            component: [...section[0].component.filter((data) => data.type === "link")]
+        };
+        setSection(newsection);
+        setImagesLink(true);
+    };
+    const handleCopyChange = () => {
+        const newsection = [...section];
+        newsection[0] = {
+            ...newsection[0],
+            component: [...section[0].component.filter((data) => data.type === "copyright")]
+        };
+        setSection(newsection);
+        setImagesCopy(true);
+    };
+    const desChange = () => {
+        const newsection = [...section];
+        newsection[0] = {
+            ...newsection[0],
+            component: [...section[0].component.filter((data) => data.type === "description")]
+        };
+        setSection(newsection);
+        setImagesDescription(true);
+    };
 
     return (
         <div className="main-container">
@@ -116,19 +119,19 @@ const Main = () => {
             <div className="sidebar">
                 <h2>Filter</h2>
                 <div className="row-1" >
-                    <input type="checkbox" />
+                    <input type="checkbox" checked={imagesChecked} onChange={handleImagesChange} />
                     <label>Images</label>
                 </div>
                 <div className="row-1" >
-                    <input type="checkbox" />
+                    <input type="checkbox"  checked={imagesLink} onChange={handleLinkChange} />
                     <label>Link</label>
                 </div>
                 <div className="row-1" >
-                    <input type="checkbox" />
+                    <input type="checkbox"  checked={imagesCopy} onChange={handleCopyChange} />
                     <label>Copytext</label>
                 </div>
                 <div className="row-1">
-                    <input type="checkbox" />
+                    <input type="checkbox"  checked={imagesDescription} onChange={desChange} />
                     <label>Description</label>
                 </div>
             </div>

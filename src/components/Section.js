@@ -8,7 +8,7 @@ const Section = (props) => {
     const [addButtonKey, setaddButtonKey] = useState(0);
     const [componentType, setComponentType] = useState("");
     const [buttonrowVisible, setButtonrowVisible] = useState(true);
-    const [showBottomInputs,setShowBottomInputs]=useState(true);
+    const [showBottomInputs, setShowBottomInputs] = useState(true);
 
 
     const clickHandler = () => {
@@ -16,10 +16,6 @@ const Section = (props) => {
     }
     const sectionCloseBtnHandler = () => {
         props.closeBtnHandler(props.scectionObj.id);
-    }
-    const idGenarator = () => {
-        var val = Math.floor(1000 + Math.random() * 9000);
-        return (val);
     }
     const rowBtnClickHandler = (type) => {
 
@@ -67,15 +63,25 @@ const Section = (props) => {
                     <div className="plus-icon-wrapper" onClick={() => sidePlusButton(obj.id)}>
                         <i className="fa fa-plus" aria-hidden="true" ></i>
                     </div>
-                    {obj.headerText&&<h2>{obj.headerText}</h2>}
-                    {obj.headerBody&&<p>{obj.headerBody}</p>}
-                    {obj.descriptionText&&<div className="description-preview"><p>{obj.descriptionText}</p></div>}
-                    {obj.type==="line"&&<div className="section-initial-text"><hr/></div>}
+                    {obj.headerText && <h2>{obj.headerText}</h2>}
+                    {obj.headerBody && <p>{obj.headerBody}</p>}
+                    {obj.descriptionText && <div className="description-preview"><p>{obj.descriptionText}</p></div>}
+                    {obj.type === "line" && <div className="section-initial-text"><hr /></div>}
+                    {obj.type === "file" &&
+                        <div className="image-upload-container">
+                        <img src={obj.fileUrl.preview} alt="placeholder" />
+                        <input className="image-name" value={obj.fileName}    />
+                    </div>}
+                    {obj.type === "link" &&
+                        <div className="image-upload-container">
+                        <img src={obj.url} alt="placeholder" />
+                        <input className="image-name" value={obj.fileName}    />
+                    </div>}
                 </div>)
             })}
-           {showBottomInputs?<div className="section-initial-text" >
+            {showBottomInputs ? <div className="section-initial-text" >
                 <Component type={componentType} sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} />
-            </div>:<></> }
+            </div> : <></>}
             {buttonRow}
         </div>
     );
