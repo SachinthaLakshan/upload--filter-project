@@ -8,6 +8,7 @@ const Section = (props) => {
     const [addButtonKey, setaddButtonKey] = useState(0);
     const [componentType, setComponentType] = useState("");
     const [buttonrowVisible, setButtonrowVisible] = useState(true);
+    const [showBottomInputs,setShowBottomInputs]=useState(true);
 
 
     const clickHandler = () => {
@@ -45,6 +46,7 @@ const Section = (props) => {
     const sidePlusButton = (key) => {
         console.log(key)
         setaddButtonKey(key);
+        setShowBottomInputs(false);
     }
 
     return (
@@ -71,9 +73,9 @@ const Section = (props) => {
                     {obj.type==="line"&&<div className="section-initial-text"><hr/></div>}
                 </div>)
             })}
-           <div className="section-initial-text" >
+           {showBottomInputs?<div className="section-initial-text" >
                 <Component type={componentType} sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} />
-            </div> 
+            </div>:<></> }
             {buttonRow}
         </div>
     );
