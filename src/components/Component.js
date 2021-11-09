@@ -80,12 +80,13 @@ const Component = (props) => {
                                 <img src={image.preview} alt="img" />
                                 <input className="image-name" value={imageName} placeholder="Name" onChange={(e)=>setImageName(e.target.value)} />
                                 <button onClick={imageUploader} className="image-button"><i className="fa fa-cloud-upload"/></button>
+                                <p>{new Date().toLocaleString() + ''}</p>
                             </div>
                         ) : (
                             <div className="image-upload-container">
                                 <img src="placeholder.png" alt="placeholder" />
                                 <input className="image-name" value={imageName} onChange={(e)=>setImageName(e.target.value)}  placeholder="Name" />
-                               
+                                <p>{new Date().toLocaleString() + ''}</p>
                             </div>
                         )}
                     </label>
@@ -107,7 +108,9 @@ const Component = (props) => {
                             <div className="image-upload-container">
                                 <img src={imageLinkFocus?linkText:"placeholder.png"} alt="placeholder" />
                                 <input className="image-name" value={imageName} onChange={(e)=>setImageName(e.target.value)}  placeholder="Name" />
-                                <input className="image-name-url" onFocus={addLinkFocus} value={linkText} placeholder="Enter Url" onChange={(e)=>setLinkText(e.target.value)} onKeyDown={handleKeyDown} />
+                                <i className="fa fa-pencil-square-o"/>
+                                <input className="image-name-url" onFocus={addLinkFocus} value={linkText} placeholder="https://" onChange={(e)=>setLinkText(e.target.value)} onKeyDown={handleKeyDown} />
+                                <p>{new Date().toLocaleString() + ''}</p>
                             </div>
                         
                     </label>
@@ -116,7 +119,7 @@ const Component = (props) => {
                     </div>
                 </div>
             )
-            case "line": return (<div className="section-initial-text"><hr /><input onKeyDown={handleKeyDown} /></div>)
+            case "line": return (<div className="section-initial-text"><hr /><button sty onClick={handleKeyDown} >Add</button></div>)
             default:
         }
     }

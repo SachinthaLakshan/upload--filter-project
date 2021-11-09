@@ -74,7 +74,14 @@ const Main = () => {
             component: [...section[0].component.filter((data) => data.type === "file")]
         };
         setSection(newsection);
-        setImagesChecked(true);
+        setImagesChecked(!imagesChecked);
+        if (imagesChecked) {
+            let arr = localStorage.getItem("section");
+            if (arr) {
+                let obj = JSON.parse(arr);
+                setSection(obj);
+            }
+        }
     };
     const handleLinkChange = () => {
         const newsection = [...section];
@@ -83,7 +90,14 @@ const Main = () => {
             component: [...section[0].component.filter((data) => data.type === "link")]
         };
         setSection(newsection);
-        setImagesLink(true);
+        setImagesLink(!imagesLink);
+        if (imagesLink) {
+            let arr = localStorage.getItem("section");
+            if (arr) {
+                let obj = JSON.parse(arr);
+                setSection(obj);
+            }
+        }
     };
     const handleCopyChange = () => {
         const newsection = [...section];
@@ -92,7 +106,14 @@ const Main = () => {
             component: [...section[0].component.filter((data) => data.type === "copyright")]
         };
         setSection(newsection);
-        setImagesCopy(true);
+        setImagesCopy(!imagesCopy);
+        if (imagesCopy) {
+            let arr = localStorage.getItem("section");
+            if (arr) {
+                let obj = JSON.parse(arr);
+                setSection(obj);
+            }
+        }
     };
     const desChange = () => {
         const newsection = [...section];
@@ -101,7 +122,14 @@ const Main = () => {
             component: [...section[0].component.filter((data) => data.type === "description")]
         };
         setSection(newsection);
-        setImagesDescription(true);
+        setImagesDescription(!imagesDescription);
+        if (imagesDescription) {
+            let arr = localStorage.getItem("section");
+            if (arr) {
+                let obj = JSON.parse(arr);
+                setSection(obj);
+            }
+        }
     };
 
     return (
@@ -123,15 +151,15 @@ const Main = () => {
                     <label>Images</label>
                 </div>
                 <div className="row-1" >
-                    <input type="checkbox"  checked={imagesLink} onChange={handleLinkChange} />
+                    <input type="checkbox" checked={imagesLink} onChange={handleLinkChange} />
                     <label>Link</label>
                 </div>
                 <div className="row-1" >
-                    <input type="checkbox"  checked={imagesCopy} onChange={handleCopyChange} />
+                    <input type="checkbox" checked={imagesCopy} onChange={handleCopyChange} />
                     <label>Copytext</label>
                 </div>
                 <div className="row-1">
-                    <input type="checkbox"  checked={imagesDescription} onChange={desChange} />
+                    <input type="checkbox" checked={imagesDescription} onChange={desChange} />
                     <label>Description</label>
                 </div>
             </div>
