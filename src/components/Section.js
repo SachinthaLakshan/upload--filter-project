@@ -71,11 +71,15 @@ const Section = (props) => {
                         <div className="image-upload-container">
                         <img src={obj.fileUrl.preview} alt="placeholder" />
                         <input className="image-name" value={obj.fileName}    />
+                        <p>{obj.date}</p>
                     </div>}
                     {obj.type === "link" &&
                         <div className="image-upload-container">
                         <img src={obj.url} alt="placeholder" />
-                        <input className="image-name" value={obj.fileName}    />
+                        <input className="image-name" value={obj.fileName} />
+                        <a href={obj.url}><i href={obj.url} className="fa fa-pencil-square-o" /></a>
+                            <input className="image-name-url" disabled={true} value={obj.url} />
+                            <p>{obj.date}</p>
                     </div>}
                 </div>)
             })}

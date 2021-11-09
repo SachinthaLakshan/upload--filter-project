@@ -312,3 +312,13 @@ color: black;
   margin-left: 218px;
   font-size: 15px;
 }
+
+.section-initial-text button{
+  width: 80px;
+  border-radius: 5px;
+  border: 0;
+  background-color: #adadad;
+}
+.section-initial-text button:hover{
+  color: #fff;
+}
