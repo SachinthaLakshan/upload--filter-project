@@ -78,7 +78,17 @@ main{
   color:#6d6a6a ;
   
 }
-.section-header h5 {
+.componennt-header{
+  display:flex;
+  flex-direction:row;
+  justify-content:flex-end;
+  align-items: center;
+  color:#acaaaa ;
+}
+.componennt-header:hover{
+  color: #333;
+}
+ection-header h5 {
   margin-top: 10px;
   margin-left: 5px;
   padding: 10px;
@@ -89,9 +99,9 @@ main{
   padding: 10px;
   border: 0;
   font-size: 15px;
-  background-color: #e4e3e3;
+  background-color: transparent;
   margin-bottom: 40px;
-  width: 100px;
+  width: auto;
   padding-bottom: 7px;
   border-radius: 5px;
 }
@@ -184,6 +194,9 @@ padding-bottom: 0;
   margin-top: 2px;
   color:rgb(148, 148, 148);
 }
+.copyright-preview .plus-icon-wrapper i:hover{
+  color: #333;
+}
 .copyright-btn-element-wrapper{
   margin: 0;
 }
@@ -206,9 +219,6 @@ padding-bottom: 0;
   padding-left: 10px;
 }
 
-.description-input{
-  
-}
 .description-input textarea{
   background-color: #d3d6d8;
   width: 750px;
@@ -271,16 +281,19 @@ padding: 0;
 }
 .image-button{
   position: absolute;
-  margin-top: 80px;
+  margin-top: -24px;
   background-color: transparent;
   border: 0;
-  margin-left: 60px;
+  margin-left: -136px;
   font-weight: bold;
-  font-size:x-large;
-  color: #706e6e;
+  font-size:45px;
+  
 }
-.image-button:hover{
-color: black;
+.image-button i{
+  color:#a09e9e ;
+}
+.image-button i:hover{
+color: rgb(230, 223, 223);
 }
 .image-name-preview{
   position: absolute;
@@ -321,4 +334,8 @@ color: black;
 }
 .section-initial-text button:hover{
   color: #fff;
+}
+.bottom-input-component{
+  margin-left: 25px;
+  margin-top: 80px;
 }

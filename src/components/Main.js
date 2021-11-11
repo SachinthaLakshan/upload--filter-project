@@ -21,6 +21,7 @@ const Main = () => {
         if (arr) {
             let obj = JSON.parse(arr);
             setSection(obj);
+            console.log(obj)
         }
     }, [])
 
@@ -38,10 +39,20 @@ const Main = () => {
         let tempList = section;
         let arr = tempList.concat({
             id: idGenarator(),
-            sectionName: `SECTION NANE-${idGenarator()}`
+            sectionName: "SECTION NANE",
+            component: []
         });
         setSection(arr);
         localStorage.setItem("section", JSON.stringify(arr));
+    }
+
+    const updateSection=(data)=>{
+        var index_section = section.map(function (x) { return x.id; }).indexOf(data.id);
+        const newsection = [...section];
+        newsection[index_section].sectionName = data.sectionName;
+        localStorage.setItem("section", JSON.stringify(newsection));
+        setSection(newsection);
+        console.log(newsection);
     }
 
 
@@ -64,15 +75,27 @@ const Main = () => {
         localStorage.setItem("section", JSON.stringify(newsection));
         setSection(newsection);
     }
-
+    
+    const componentCloseHandler=(sectionId,componentId)=>{
+        var index_section = section.map(function (x) { return x.id; }).indexOf(sectionId);
+        const newsection = [...section];
+        newsection[index_section] = {
+            ...newsection[index_section],
+            component: section[index_section].component.filter(obj => obj.id !== componentId)
+        };
+        setSection(newsection);
+        localStorage.setItem("section", JSON.stringify(newsection))
+    }
 
 
     const handleImagesChange = () => {
         const newsection = [...section];
-        newsection[0] = {
-            ...newsection[0],
-            component: [...section[0].component.filter((data) => data.type === "file")]
-        };
+        for (var i = 0; i < newsection.length; i++) {
+            newsection[0] = {
+                ...newsection[0],
+                component: [...section[0].component.filter((data) => data.type === "file")]
+            };
+        }
         setSection(newsection);
         setImagesChecked(!imagesChecked);
         if (imagesChecked) {
@@ -85,10 +108,12 @@ const Main = () => {
     };
     const handleLinkChange = () => {
         const newsection = [...section];
-        newsection[0] = {
-            ...newsection[0],
-            component: [...section[0].component.filter((data) => data.type === "link")]
-        };
+        for (var i = 0; i < newsection.length; i++) {
+            newsection[0] = {
+                ...newsection[0],
+                component: [...section[0].component.filter((data) => data.type === "link")]
+            };
+        }
         setSection(newsection);
         setImagesLink(!imagesLink);
         if (imagesLink) {
@@ -101,10 +126,12 @@ const Main = () => {
     };
     const handleCopyChange = () => {
         const newsection = [...section];
-        newsection[0] = {
-            ...newsection[0],
-            component: [...section[0].component.filter((data) => data.type === "copyright")]
-        };
+        for (var i = 0; i < newsection.length; i++) {
+            newsection[0] = {
+                ...newsection[0],
+                component: [...section[0].component.filter((data) => data.type === "copyright")]
+            };
+        }
         setSection(newsection);
         setImagesCopy(!imagesCopy);
         if (imagesCopy) {
@@ -116,11 +143,14 @@ const Main = () => {
         }
     };
     const desChange = () => {
+
         const newsection = [...section];
-        newsection[0] = {
-            ...newsection[0],
-            component: [...section[0].component.filter((data) => data.type === "description")]
-        };
+        for (var i = 0; i < newsection.length; i++) {
+            newsection[i] = {
+                ...newsection[i],
+                component: [...section[i].component.filter((data) => data.type === "description")]
+            };
+        }
         setSection(newsection);
         setImagesDescription(!imagesDescription);
         if (imagesDescription) {
@@ -137,7 +167,7 @@ const Main = () => {
             <div >
                 {section.map((obj) => {
                     return (<div key={obj.id}>
-                        <Section scectionObj={obj} closeBtnHandler={sectionCloseBtnHandler} componentSaveHandler={addComponentHandler} />
+                        <Section updateSectionName={updateSection} scectionObj={obj} closeBtnHandler={sectionCloseBtnHandler} componentSaveHandler={addComponentHandler} componentCloseHandler={componentCloseHandler} />
                     </div>)
                 })}
                 <div className="plus-icon-wrapper" onClick={addSection}>
