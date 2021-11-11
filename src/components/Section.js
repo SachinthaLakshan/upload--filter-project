@@ -9,9 +9,7 @@ const Section = (props) => {
     const [buttonrowVisible, setButtonrowVisible] = useState(true);
     const [showBottomInputs, setShowBottomInputs] = useState(true);
     const [sectionNane, setSectionName] = useState(props.scectionObj.sectionName);
-
-    console.log("buttonrowVisible:", buttonrowVisible);
-    console.log("showBottomInputs:", showBottomInputs);
+    const [isBottom,setIsBottom]=useState(true);
 
     const sectionCloseBtnHandler = () => {
         props.closeBtnHandler(props.scectionObj.id);
@@ -19,23 +17,32 @@ const Section = (props) => {
     const componentCloseBtnHandler = (componenntId) => {
         props.componentCloseHandler(props.scectionObj.id,componenntId)
     }
-    const rowBtnClickHandler = (type) => {
+    const rowBtnClickHandler = (type,bottomOrTop) => {
+        console.log(bottomOrTop);
+        console.log(isBottom);
+        if(bottomOrTop==="bottom"){
+            setIsBottom(true);
+        }else if(bottomOrTop==="middle"){
+            setIsBottom(false);
+        }
         setComponentType(type);
         setButtonrowVisible(false);
     }
-    const buttonRow = (<>
+    const buttonRow =(type)=>{ 
+
+        return(<>
         <div className="section-initial-text">
             <p>Select the component that you want to add</p>
         </div>
         <div className="row-1 bottom-btn-wraper">
-            <button className="row-buttons" onClick={() => rowBtnClickHandler("copyright")}>CopyRight</button>
-            <button className="row-buttons" onClick={() => rowBtnClickHandler("description")}>Description</button>
-            <button className="row-buttons" onClick={() => rowBtnClickHandler("file")}>File</button>
-            <button className="row-buttons" onClick={() => rowBtnClickHandler("link")}>Link</button>
-            <button className="row-buttons" onClick={() => rowBtnClickHandler("line")}>Line</button>
+            <button className="row-buttons" onClick={() => rowBtnClickHandler("copyright",type)}>CopyRight</button>
+            <button className="row-buttons" onClick={() => rowBtnClickHandler("description",type)}>Description</button>
+            <button className="row-buttons" onClick={() => rowBtnClickHandler("file",type)}>File</button>
+            <button className="row-buttons" onClick={() => rowBtnClickHandler("link",type)}>Link</button>
+            <button className="row-buttons" onClick={() => rowBtnClickHandler("line",type)}>Line</button>
         </div>
     </>
-    );
+    )}
 
     const sidePlusButton = (key) => {
         setaddButtonKey(key);
@@ -58,7 +65,7 @@ const Section = (props) => {
 
             {props.scectionObj.component && props.scectionObj.component.map((obj) => {
                 return (<div className="copyright-preview" key={obj.id}>
-                    {addButtonKey === obj.id && buttonrowVisible ? buttonRow : <></>}
+                    {addButtonKey === obj.id && buttonrowVisible ? buttonRow("middle") : <></>}
                     {addButtonKey === obj.id && !buttonrowVisible ? <div className="add-component" >
                         <Component type={componentType} sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} componentId={obj.id} />
                     </div> : <></>
@@ -89,10 +96,10 @@ const Section = (props) => {
                         </div>}
                 </div>)
             })}
-            {showBottomInputs ? <div className="bottom-input-component" >
+            {showBottomInputs ||isBottom ? <div className="bottom-input-component" >
                 <Component type={componentType} sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} />
             </div> : <></>}
-            {buttonRow}
+            {buttonRow("bottom")}
         </div>
     );
 };
