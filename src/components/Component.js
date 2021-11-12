@@ -8,7 +8,6 @@ const Component = (props) => {
     const [descriptionText, setDescriptionText] = useState("");
     const [linkText, setLinkText] = useState("");
     const [imageName, setImageName] = useState("");
-    const [toggleHeadlineText, setToggleHeadlineText] = useState(true);
     const [image, setImage] = useState({ preview: "", raw: "" });
     const [imageLinkFocus, setImageLinkFocus] = useState(false);
     const [date, SetDate] = useState("");
@@ -25,7 +24,7 @@ const Component = (props) => {
     };
     const linkAddFunction = () => {
         props.componentSaveHandler(genarateComponentObj(props.type), props.sectionId, props.componentId);
-        setToggleHeadlineText(false);
+        props.added(true);
     }
 
     const idGenarator = () => {
@@ -53,14 +52,15 @@ const Component = (props) => {
     }
 
     const imageUploader = () => {
-        setToggleHeadlineText(false);
         props.componentSaveHandler(genarateComponentObj(props.type), props.sectionId, props.componentId);
+        props.added(true);
     }
 
     const handleKeyDown = (event) => {
         if (event.key === "Enter") {
-            setToggleHeadlineText(false);
             props.componentSaveHandler(genarateComponentObj(props.type), props.sectionId, props.componentId);
+            props.added(true);
+           
         }
 
     }
@@ -132,7 +132,7 @@ const Component = (props) => {
 
     return (
         <div className="component-container">
-            {toggleHeadlineText ? Component() : <></>}
+             {Component()} 
         </div>
     );
 };

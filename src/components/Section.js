@@ -10,6 +10,8 @@ const Section = (props) => {
     const [showBottomInputs, setShowBottomInputs] = useState(true);
     const [sectionNane, setSectionName] = useState(props.scectionObj.sectionName);
     const [isBottom,setIsBottom]=useState(true);
+    const [hideInputs,setHideInputs]=useState(false);
+    
 
     const sectionCloseBtnHandler = () => {
         props.closeBtnHandler(props.scectionObj.id);
@@ -18,8 +20,6 @@ const Section = (props) => {
         props.componentCloseHandler(props.scectionObj.id,componenntId)
     }
     const rowBtnClickHandler = (type,bottomOrTop) => {
-        console.log(bottomOrTop);
-        console.log(isBottom);
         if(bottomOrTop==="bottom"){
             setIsBottom(true);
         }else if(bottomOrTop==="middle"){
@@ -27,6 +27,7 @@ const Section = (props) => {
         }
         setComponentType(type);
         setButtonrowVisible(false);
+        setHideInputs(false);
     }
     const buttonRow =(type)=>{ 
 
@@ -56,6 +57,10 @@ const Section = (props) => {
         }
     }
 
+    const componenntAdded=(data)=>{
+setHideInputs(data);
+    }
+
     return (
         <div className="card-container">
             <div className="section-header">
@@ -66,8 +71,8 @@ const Section = (props) => {
             {props.scectionObj.component && props.scectionObj.component.map((obj) => {
                 return (<div className="copyright-preview" key={obj.id}>
                     {addButtonKey === obj.id && buttonrowVisible ? buttonRow("middle") : <></>}
-                    {addButtonKey === obj.id && !buttonrowVisible ? <div className="add-component" >
-                        <Component type={componentType} sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} componentId={obj.id} />
+                    {(addButtonKey === obj.id && !buttonrowVisible)&&!hideInputs ? <div className="add-component" >
+                        <Component added={componenntAdded} type={componentType} sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} componentId={obj.id} />
                     </div> : <></>
                     }
                     <div className="plus-icon-wrapper" onClick={() => sidePlusButton(obj.id)}>
@@ -96,8 +101,8 @@ const Section = (props) => {
                         </div>}
                 </div>)
             })}
-            {showBottomInputs ||isBottom ? <div className="bottom-input-component" >
-                <Component type={componentType} sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} />
+            {(showBottomInputs ||isBottom)&&!hideInputs  ? <div className="bottom-input-component" >
+                <Component type={componentType} sectionId={props.scectionObj.id} componentSaveHandler={props.componentSaveHandler} added={componenntAdded} />
             </div> : <></>}
             {buttonRow("bottom")}
         </div>
